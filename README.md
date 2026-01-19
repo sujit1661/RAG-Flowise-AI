@@ -20,6 +20,7 @@ This project enables **PDF-based conversational question answering** with memory
 - 🧠 In-memory LLM response caching  
 
 
+---
 
 
 
@@ -47,6 +48,8 @@ Groq LLM (Chat Model)
 
 
 
+---
+
 
 
 📂 Project Files
@@ -57,6 +60,8 @@ Groq LLM (Chat Model)
 
 ├── README.md
 
+
+---
 
 
 
