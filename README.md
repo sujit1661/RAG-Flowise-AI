@@ -26,22 +26,75 @@ This project enables **PDF-based conversational question answering** with memory
 ## 🏗️ Architecture
 PDF File
    ↓
+   
 Text Splitter (RecursiveCharacterTextSplitter)
    ↓
+   
 HuggingFace Embeddings
    ↓
+   
 Chroma Vector Store
    ↓
+   
 Retriever
    ↓
+   
 Conversational Retrieval QA Chain
    ↓
+   
 Groq LLM (Chat Model)
+
+
 
 
 
 
 📂 Project Files
 .
+
 ├── RAG USING VECTORDB Chatflow.json
+
 ├── README.md
+
+
+
+
+⚙️ Setup Instructions
+1️⃣ Install Flowise
+npm install -g flowise
+
+
+2️⃣ Start Flowise
+flowise start
+
+Open 👉 http://localhost:3000
+
+
+
+3️⃣ Import Chatflow
+
+Go to Flowise UI
+
+Click Import
+
+Upload RAG USING VECTORDB Chatflow.json
+
+
+
+4️⃣ Configure Credentials
+
+Add the following credentials in Flowise:
+
+🔹 Groq API
+
+Provider: Groq
+
+API Key: GROQ_API_KEY
+
+
+🔹 HuggingFace API
+
+Provider: HuggingFace
+
+API Key: HF_API_KEY
+
