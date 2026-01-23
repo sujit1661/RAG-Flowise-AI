@@ -1,115 +1,137 @@
- 📄 RAG using VectorDB (Chroma) with Groq LLM
+# 📄 RAG using VectorDB (Chroma) with Groq LLM
 
 A **Retrieval-Augmented Generation (RAG)** system built using **Flowise**, **Chroma Vector Database**, **HuggingFace Embeddings**, and **Groq LLM**.  
 This project enables **PDF-based conversational question answering** with memory, caching, and ultra-fast inference.
 
 ---
 
-
-
 ## 🚀 Features
 
-- 📚 PDF document ingestion  
-- ✂️ Recursive text chunking  
-- 🧠 Embeddings using HuggingFace  
-- 🗄️ Chroma Vector Database for similarity search  
-- ⚡ High-speed inference using Groq LPU  
-- 💬 Conversational memory (chat history aware)  
-- 🔁 Follow-up question rephrasing  
-- 🧾 Context-grounded answers (no hallucinations)  
-- 🧠 In-memory LLM response caching  
-
+- 📚 **PDF document ingestion** – Upload and process PDF files easily  
+- ✂️ **Recursive text chunking** – Break large documents into manageable chunks  
+- 🧠 **Embeddings using HuggingFace** – High-quality text vectorization  
+- 🗄️ **Chroma Vector Database** – Efficient similarity search for retrieval  
+- ⚡ **High-speed inference using Groq LPU** – Ultra-fast LLM responses  
+- 💬 **Conversational memory** – Maintains chat history context  
+- 🔁 **Follow-up question rephrasing** – Context-aware query reformulation  
+- 🧾 **Context-grounded answers** – Reduces hallucinations using retrieved context  
+- 🧠 **In-memory caching** – Faster responses for repeated or similar queries  
 
 ---
-
-
 
 ## 🏗️ Architecture
-PDF File
-   ↓
-   
-Text Splitter (RecursiveCharacterTextSplitter)
-   ↓
-   
-HuggingFace Embeddings
-   ↓
-   
-Chroma Vector Store
-   ↓
-   
-Retriever
-   ↓
-   
-Conversational Retrieval QA Chain
-   ↓
-   
-Groq LLM (Chat Model)
 
+High-level RAG pipeline:
 
-
+    PDF File
+        ↓
+    Text Splitter (RecursiveCharacterTextSplitter)
+        ↓
+    HuggingFace Embeddings
+        ↓
+    Chroma Vector Store
+        ↓
+    Retriever
+        ↓
+    Conversational Retrieval QA Chain
+        ↓
+    Groq LLM (Chat Model)
 
 ---
 
+## 📂 Project Files
 
-
-📂 Project Files
-.
-
-
-├── RAG USING VECTORDB Chatflow.json
-
-├── README.md
-
+    .
+    ├── RAG USING VECTORDB Chatflow.json
+    └── README.md
 
 ---
 
+## ⚙️ Setup Instructions
 
+### 1️⃣ Install Flowise
 
-⚙️ Setup Instructions
+Install Flowise globally using npm:
 
+    npm install -g flowise
 
-1️⃣ Install Flowise
-npm install -g flowise
+### 2️⃣ Start Flowise
 
+Start the Flowise server:
 
+    flowise start
 
+Then open Flowise in your browser:
 
-2️⃣ Start Flowise
-flowise start
+    http://localhost:3000
 
-Open 👉 http://localhost:3000
+---
 
+### 3️⃣ Import Chatflow
 
+1. Open the **Flowise UI** in your browser.  
+2. Click on **Import** in the top-right (or appropriate) menu.  
+3. Select and upload: **RAG USING VECTORDB Chatflow.json**.  
 
+This will create the full RAG pipeline for you.
 
+---
 
-3️⃣ Import Chatflow
+### 4️⃣ Configure Credentials
 
-Go to Flowise UI
+In the Flowise UI, go to **Credentials** and add:
 
-Click Import
+#### 🔹 Groq API
 
-Upload RAG USING VECTORDB Chatflow.json
+- **Provider**: Groq  
+- **API Key**: `GROQ_API_KEY`  
 
+#### 🔹 HuggingFace API
 
+- **Provider**: HuggingFace  
+- **API Key**: `HF_API_KEY`  
 
+Make sure both keys are active and have sufficient quota.
 
+---
 
-4️⃣ Configure Credentials
+## 💡 Usage
 
-Add the following credentials in Flowise:
+1. **Upload PDFs**  
+   - In the configured chatflow, use the file upload node/step to add one or more PDF documents.  
 
-🔹 Groq API
+2. **Ask Questions**  
+   - Use the chat interface in Flowise to ask natural language questions about your PDFs.  
 
-Provider: Groq
+3. **Retrieval + Generation**  
+   - The system:
+     - Splits PDFs into chunks  
+     - Creates embeddings with HuggingFace  
+     - Stores and retrieves chunks via Chroma  
+     - Uses Groq LLM to generate answers grounded in retrieved context  
 
-API Key: GROQ_API_KEY
+4. **Conversational Follow-ups**  
+   - Ask follow-up questions; the system:
+     - Uses conversational memory  
+     - Optionally rephrases follow-up questions  
+     - Retrieves new relevant context and responds accordingly  
 
+---
 
+## 📌 Notes
 
-🔹 HuggingFace API
+- Ensure both **Groq** and **HuggingFace** API keys are valid and correctly set in Flowise.  
+- For **large PDFs**, embedding and indexing may take time on first run.  
+- In-memory caching improves performance for:
+  - Repeated questions  
+  - Similar queries over the same document set  
+- The system is designed to **minimize hallucinations** by always grounding responses in retrieved context from Chroma.  
 
-Provider: HuggingFace
+---
 
-API Key: HF_API_KEY
+## 🌐 References
 
+- **Flowise** – Low-code / no-code LLM workflow builder  
+- **Chroma Vector Database** – Open-source embedding database for similarity search  
+- **HuggingFace Embeddings** – Pretrained models for text embeddings  
+- **Groq LLM** – High-speed LPU-accelerated large language model inference
